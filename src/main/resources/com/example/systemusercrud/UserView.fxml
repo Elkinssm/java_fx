@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.collections.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
@@ -26,12 +28,27 @@
         </HBox>
 
         <!-- Segunda fila: rol, estado, botones -->
-        <HBox spacing="10">
-            <TextField fx:id="roleField" promptText="Rol" />
-            <TextField fx:id="statusField" promptText="Estado" />
-            <Button onAction="#handleAddUser" text="Agregar" />
-            <Button onAction="#handleUpdateUser" text="Actualizar" />
-        </HBox>
+<HBox spacing="10">
+    <ComboBox fx:id="roleComboBox" prefHeight="26.0" prefWidth="151.0" promptText="Rol">
+        <items>
+            <FXCollections fx:factory="observableArrayList">
+                <String fx:value="Administrador" />
+                <String fx:value="Usuario" />
+                <String fx:value="Invitado" />
+            </FXCollections>
+        </items>
+    </ComboBox>
+    <ComboBox fx:id="statusComboBox" prefHeight="26.0" prefWidth="149.0" promptText="Estado">
+        <items>
+            <FXCollections fx:factory="observableArrayList">
+                <String fx:value="Activo" />
+                <String fx:value="Inactivo" />
+            </FXCollections>
+        </items>
+    </ComboBox>
+    <Button onAction="#handleAddUser" text="Agregar" textAlignment="CENTER" />
+    <Button onAction="#handleUpdateUser" text="Actualizar" />
+</HBox>
 
         <!-- Tabla -->
         <TableView fx:id="userTable" prefHeight="300">
@@ -46,5 +63,5 @@
         <!-- Botón de eliminar -->
         <Button onAction="#handleDeleteUser" text="Eliminar Seleccionado" />
     </VBox>
-   <ImageView fitHeight="300.0" fitWidth="189.0" layoutX="584.0" layoutY="111.0" pickOnBounds="true" preserveRatio="true" />
+   <ImageView fitHeight="300.0" fitWidth="189.0" layoutX="586.0" layoutY="111.0" pickOnBounds="true" preserveRatio="true" />
 </AnchorPane>

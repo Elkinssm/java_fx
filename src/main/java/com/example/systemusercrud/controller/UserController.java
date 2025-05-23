@@ -11,23 +11,32 @@ import org.controlsfx.control.Notifications;
 
 public class UserController {
 
-    @FXML private TextField nameField;
-    @FXML private TextField emailField;
-    @FXML private PasswordField passwordField;
-    @FXML private TextField roleField;
-    @FXML private TextField statusField;
-
-    @FXML private Label nameError;
-    @FXML private Label emailError;
-
-    @FXML private TableView<User> userTable;
-    @FXML private TableColumn<User, String> nameColumn;
-    @FXML private TableColumn<User, String> emailColumn;
-    @FXML private TableColumn<User, String> roleColumn;
-    @FXML private TableColumn<User, String> statusColumn;
-
     private final UserDAO userDAO = new UserDAO();
     private final ObservableList<User> userList = FXCollections.observableArrayList();
+    @FXML
+    private TextField nameField;
+    @FXML
+    private TextField emailField;
+    @FXML
+    private PasswordField passwordField;
+    @FXML
+    private ComboBox<String> roleComboBox;
+    @FXML
+    private ComboBox<String> statusComboBox;
+    @FXML
+    private Label nameError;
+    @FXML
+    private Label emailError;
+    @FXML
+    private TableView<User> userTable;
+    @FXML
+    private TableColumn<User, String> nameColumn;
+    @FXML
+    private TableColumn<User, String> emailColumn;
+    @FXML
+    private TableColumn<User, String> roleColumn;
+    @FXML
+    private TableColumn<User, String> statusColumn;
 
     @FXML
     public void initialize() {
@@ -38,8 +47,9 @@ public class UserController {
 
         loadUsers();
 
-        userTable.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
-            if (newVal != null) fillForm(newVal);
+        userTable.getSelectionModel().selectedItemProperty().addListener((_, _, newVal) -> {
+            if (newVal != null)
+                fillForm(newVal);
         });
     }
 
@@ -52,16 +62,16 @@ public class UserController {
         nameField.setText(user.getName());
         emailField.setText(user.getEmail());
         passwordField.setText(user.getPassword());
-        roleField.setText(user.getRole());
-        statusField.setText(user.getStatus());
+        roleComboBox.setValue(user.getRole());
+        statusComboBox.setValue(user.getStatus());
     }
 
     private void clearForm() {
         nameField.clear();
         emailField.clear();
         passwordField.clear();
-        roleField.clear();
-        statusField.clear();
+        roleComboBox.setValue(null);
+        statusComboBox.setValue(null);
         userTable.getSelectionModel().clearSelection();
         nameError.setText("");
         emailError.setText("");
@@ -82,6 +92,13 @@ public class UserController {
             valid = false;
         }
 
+        if (roleComboBox.getValue() == null || roleComboBox.getValue().isBlank()) {
+            valid = false;
+        }
+        if (statusComboBox.getValue() == null || statusComboBox.getValue().isBlank()) {
+            valid = false;
+        }
+
         return valid;
     }
 
@@ -94,14 +111,15 @@ public class UserController {
 
     @FXML
     private void handleAddUser() {
-        if (!isValidForm()) return;
+        if (!isValidForm())
+            return;
 
         User user = new User(0,
                 nameField.getText(),
                 emailField.getText(),
                 passwordField.getText(),
-                roleField.getText(),
-                statusField.getText());
+                roleComboBox.getValue(),
+                statusComboBox.getValue());
 
         userDAO.addUser(user);
         loadUsers();
@@ -112,15 +130,17 @@ public class UserController {
     @FXML
     private void handleUpdateUser() {
         User selected = userTable.getSelectionModel().getSelectedItem();
-        if (selected == null) return;
+        if (selected == null)
+            return;
 
-        if (!isValidForm()) return;
+        if (!isValidForm())
+            return;
 
         selected.setName(nameField.getText());
         selected.setEmail(emailField.getText());
         selected.setPassword(passwordField.getText());
-        selected.setRole(roleField.getText());
-        selected.setStatus(statusField.getText());
+        selected.setRole(roleComboBox.getValue());
+        selected.setStatus(statusComboBox.getValue());
 
         userDAO.updateUser(selected);
         loadUsers();
@@ -131,7 +151,8 @@ public class UserController {
     @FXML
     private void handleDeleteUser() {
         User selected = userTable.getSelectionModel().getSelectedItem();
-        if (selected == null) return;
+        if (selected == null)
+            return;
 
         userDAO.deleteUser(selected.getId());
         loadUsers();
