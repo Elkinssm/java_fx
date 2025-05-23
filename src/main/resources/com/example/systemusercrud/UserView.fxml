@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="500" prefWidth="800" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.systemusercrud.controller.UserController">
+    <VBox spacing="10">
+        <padding>
+            <Insets bottom="10" left="10" right="10" top="10" />
+        </padding>
+
+        <!-- Primera fila: nombre, correo, contraseña -->
+        <HBox spacing="10">
+            <TextField fx:id="nameField" promptText="Nombre" />
+            <TextField fx:id="emailField" promptText="Correo" />
+            <PasswordField fx:id="passwordField" promptText="Contraseña" />
+        </HBox>
+
+        <!-- Errores de validación -->
+        <HBox spacing="10">
+            <Label fx:id="nameError" prefHeight="18.0" prefWidth="149.0" style="-fx-text-fill: red;" />
+            <Label fx:id="emailError" prefHeight="18.0" prefWidth="149.0" style="-fx-text-fill: red;" />
+            <!-- Puedes agregar un error de contraseña si lo deseas -->
+        </HBox>
+
+        <!-- Segunda fila: rol, estado, botones -->
+        <HBox spacing="10">
+            <TextField fx:id="roleField" promptText="Rol" />
+            <TextField fx:id="statusField" promptText="Estado" />
+            <Button onAction="#handleAddUser" text="Agregar" />
+            <Button onAction="#handleUpdateUser" text="Actualizar" />
+        </HBox>
+
+        <!-- Tabla -->
+        <TableView fx:id="userTable" prefHeight="300">
+            <columns>
+                <TableColumn fx:id="nameColumn" prefWidth="150" text="Nombre" />
+                <TableColumn fx:id="emailColumn" prefWidth="200" text="Correo" />
+                <TableColumn fx:id="roleColumn" prefWidth="100" text="Rol" />
+                <TableColumn fx:id="statusColumn" prefWidth="100" text="Estado" />
+            </columns>
+        </TableView>
+
+        <!-- Botón de eliminar -->
+        <Button onAction="#handleDeleteUser" text="Eliminar Seleccionado" />
+    </VBox>
+   <ImageView fitHeight="300.0" fitWidth="189.0" layoutX="584.0" layoutY="111.0" pickOnBounds="true" preserveRatio="true" />
+</AnchorPane>
