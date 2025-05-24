@@ -118,7 +118,7 @@ Este proyecto incluye un archivo `docker-compose.yml` para levantar una base de 
 
 ## Créditos
 
-- Desarrollado por Elkin Silva Manrique.
+- Desarrollado por [Elkin Silva Manrique](https://github.com/Elkinssm).
 - Basado en JavaFX y ControlsFX.
 
 ---
