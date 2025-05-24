@@ -2,13 +2,6 @@
 
 Aplicación de gestión de usuarios (CRUD) desarrollada en JavaFX utilizando arquitectura MVC.
 
-## Características
-
-- Crear, leer, actualizar y eliminar usuarios.
-- Validación de campos.
-- Selección de rol y estado (Activo/Inactivo) mediante ComboBox.
-- Notificaciones visuales.
-- Interfaz moderna con JavaFX.
 
 ## Requisitos
 
@@ -64,6 +57,10 @@ systemUserCrud/
 - Puedes adaptar la validación y los campos según tus necesidades.
 
 ## Uso con Docker
+
+> ⚠️ **Importante:**  
+> Antes de ejecutar la aplicación, asegúrate de que Docker esté instalado, en ejecución y que los servicios definidos en `docker-compose.yml` estén levantados.  
+> Si la base de datos no está corriendo, la aplicación no podrá conectarse correctamente.
 
 Este proyecto incluye un archivo `docker-compose.yml` para levantar una base de datos MySQL y Adminer para administración visual.
 
