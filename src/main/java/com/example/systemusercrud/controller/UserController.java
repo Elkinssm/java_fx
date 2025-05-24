@@ -5,6 +5,7 @@ import com.example.systemusercrud.model.UserDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.controlsfx.control.Notifications;
@@ -106,6 +107,7 @@ public class UserController {
         Notifications.create()
                 .title(title)
                 .text(message)
+                .position(Pos.CENTER)
                 .showInformation();
     }
 
